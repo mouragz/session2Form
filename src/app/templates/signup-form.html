@@ -1,0 +1,33 @@
+<form class="container" [formGroup]="signUpForm" (ngSubmit)="signUp()">
+
+
+     <div class="form-group" 
+        [ngClass]="{'has-error':!signUpForm.controls['username'].valid && signUpForm.controls['username'].touched}">
+        <label>User Name</label>
+        <input class="form-control" type="text"
+        [formControl]="signUpForm.controls['username']">
+        <!-- The hasError method will tell us if a particular error exists -->
+        <div *ngIf="signUpForm.controls['username'].hasError('required') && signUpForm.controls['username'].touched" 
+        class="alert alert-danger">You must include a user name.</div>
+
+
+        <div *ngIf="signUpForm.controls['username'].hasError('cannotContainSpace') && signUpForm.controls['username'].touched" 
+        class="alert alert-danger">Your username should not contain spaces.</div>
+
+      </div>
+
+ <div class="form-group" 
+        [ngClass]="{'has-error':!signUpForm.controls['password'].valid && signUpForm.controls['password'].touched}">
+        <label>Password</label>
+        <input class="form-control" type="password"
+        [formControl]="signUpForm.controls['password']">
+        <!-- The hasError method will tell us if a particular error exists -->
+        <div *ngIf="signUpForm.controls['password'].hasError('required') && signUpForm.controls['password'].touched" 
+        class="alert alert-danger"> You must include a password.</div>
+      </div>
+
+
+  <div class="form-group">
+    <button type="submit" class="btn btn-primary" [disabled]="!signUpForm.valid">Sign Up</button>
+  </div>
+</form>
